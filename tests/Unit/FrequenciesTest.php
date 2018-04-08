@@ -39,6 +39,16 @@ class FrequenciesTest extends TestCase
   }
 
   /** @test */
+  public function cant_replace_past_the_end_of_an_expression()
+  {
+    $frequencies = $this->frequencies();
+
+    $frequencies->replaceIntoExpression(5, [1, 2]);
+
+    $this->assertEquals($frequencies->expression, '* * * * 1');
+  }
+
+  /** @test */
   public function can_set_plain_cron_expression()
   {
     $frequencies = $this->frequencies();
