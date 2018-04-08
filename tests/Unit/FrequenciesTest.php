@@ -88,6 +88,33 @@ class FrequenciesTest extends TestCase
     $this->assertEquals($frequencies->expression, '*/30 * * * *');
   }
 
+  /** @test */
+  public function can_set_hourly_at()
+  {
+    $frequencies = $this->frequencies();
+    $frequencies->hourlyAt(45);
+
+    $this->assertEquals($frequencies->expression, '45 * * * *');
+  }
+
+  /** @test */
+  public function can_set_hourly()
+  {
+    $frequencies = $this->frequencies();
+    $frequencies->hourly();
+
+    $this->assertEquals($frequencies->expression, '1 * * * *');
+  }
+
+  /** @test */
+  public function can_set_daily_at()
+  {
+    $frequencies = $this->frequencies();
+    $frequencies->dailyAt(12, 30);
+
+    $this->assertEquals($frequencies->expression, '30 12 * * *');
+  }
+
   protected function frequencies()
   {
     $frequencies = $this->getMockForTrait(Frequencies::class);
