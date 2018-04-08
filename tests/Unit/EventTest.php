@@ -1,12 +1,15 @@
 <?php
 
+use App\Scheduler\Event;
 use PHPUnit\Framework\TestCase;
 
 class EventTest extends TestCase
 {
   /** @test */
-  public function sample_test()
+  public function event_has_default_cron_expression()
   {
-    $this->assertTrue(true);
+    $event = $this->getMockForAbstractClass(Event::class);
+
+    $this->assertEquals($event->expression, '* * * * *');
   }
 }
