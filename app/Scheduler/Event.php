@@ -4,9 +4,12 @@ namespace App\Scheduler;
 
 use Carbon\Carbon;
 use Cron\CronExpression;
+use App\Scheduler\Frequencies;
 
 abstract class Event
 {
+  use Frequencies;
+  
   public $expression = '* * * * *';
 
   abstract public function handle();
