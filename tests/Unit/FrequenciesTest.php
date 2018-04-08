@@ -13,9 +13,9 @@ class FrequenciesTest extends TestCase
   {
     $frequencies = $this->frequencies();
 
-    $frequencies->replaceIntoExpression(1, 1);
+    $frequencies->replaceIntoExpression(1, 1)->replaceIntoExpression(2, 2);
 
-    $this->assertEquals($frequencies->expression, '1 * * * *');
+    $this->assertEquals($frequencies->expression, '1 2 * * *');
   }
 
   /** @test */
