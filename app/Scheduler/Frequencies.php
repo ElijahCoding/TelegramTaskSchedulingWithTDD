@@ -41,6 +41,16 @@ trait Frequencies
     return $this->replaceIntoExpression(1, [$minute, $hour]);
   }
 
+  public function daily()
+  {
+    return $this->dailyAt(0, 0);
+  }
+
+  public function twiceDaily($firstHour = 1, $lastHour = 12)
+  {
+    return $this->replaceIntoExpression(1, [0, "{$firstHour},{$lastHour}"]);
+  }
+
   public function replaceIntoExpression($position, $value)
   {
     $value = (array) $value;
