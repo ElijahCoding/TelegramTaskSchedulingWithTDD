@@ -7,6 +7,17 @@ use PHPUnit\Framework\TestCase;
 
 class FrequenciesTest extends TestCase
 {
+
+  /** @test */
+  public function can_replace_into_expression_at_position()
+  {
+    $frequencies = $this->frequencies();
+
+    $frequencies->replaceIntoExpression(1, 1);
+
+    $this->assertEquals($frequencies->expression, '1 * * * *');
+  }
+
   /** @test */
   public function can_set_plain_cron_expression()
   {
