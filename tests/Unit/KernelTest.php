@@ -27,6 +27,17 @@ class KernelTest extends TestCase
   }
 
   /** @test */
+  public function adding_event_returns_event()
+  {
+    $event = $this->getMockForAbstractClass(Event::class);
+
+    $kernel = new Kernel;
+    $result = $kernel->add($event);
+
+    $this->assertInstanceOf(Event::class, $result);
+  }
+
+  /** @test */
   public function cant_add_event()
   {
     $this->expectException(TypeError::class);

@@ -19,6 +19,8 @@ class Kernel
   public function add(Event $event)
   {
     $this->events[] = $event;
+
+    return $event;
   }
 
   public function run()
