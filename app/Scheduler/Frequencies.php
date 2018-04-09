@@ -51,6 +51,11 @@ trait Frequencies
     return $this->replaceIntoExpression(1, [0, "{$firstHour},{$lastHour}"]);
   }
 
+  public function days()
+  {
+    return $this->replaceIntoExpression(5, implode(',', func_get_args() ?: '*'));
+  }
+
   public function replaceIntoExpression($position, $value)
   {
     $value = (array) $value;

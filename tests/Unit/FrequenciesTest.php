@@ -142,6 +142,15 @@ class FrequenciesTest extends TestCase
     $this->assertEquals($frequencies->expression, '0 1,12 * * *');
   }
 
+  /** @test */
+  public function can_set_days()
+  {
+    $frequencies = $this->frequencies();
+    $frequencies->days(1, 3, 5);
+
+    $this->assertEquals($frequencies->expression, '* * * * 1,3,5');
+  }
+
   protected function frequencies()
   {
     $frequencies = $this->getMockForTrait(Frequencies::class);

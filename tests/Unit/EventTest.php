@@ -6,11 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class EventTest extends TestCase
 {
-  // public function setUp()
-  // {
-  //
-  // }
-
   /** @test */
   public function event_has_default_cron_expression()
   {
