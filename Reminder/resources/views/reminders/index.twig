@@ -1,0 +1,37 @@
+{% extends 'app.twig' %}
+
+{% block content %}
+  <div class="table-responsive">
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th>Reminder</th>
+          <th>Frequency</th>
+          <th>Day</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Run once?</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for reminder in reminders %}
+          <tr>
+            <td>{{ reminder.body }}</td>
+            <td>{{ reminder.frequency }}</td>
+            <td>{{ reminder.day ?: '-' }}</td>
+            <td>{{ reminder.date ?: '-' }}</td>
+            <td>{{ reminder.time }}</td>
+            <td>{{ reminder.run_once ? 'Yes' : 'No' }}</td>
+            <td>
+              <a href="#">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 <?php
 
-use App\Controllers\HomeController;
+use App\Controllers\ReminderController;
 
-$app->get('/', HomeController::class . ':index');
+$app->get('/', ReminderController::class . ':index');

@@ -15,4 +15,11 @@ class Reminder extends Model
         'expression',
         'run_once',
     ];
+
+    public $table = "reminders";
+
+    public function getFrequencyAttribute($value) // weekly monthly daily
+    {
+      return 'a';
+    }
 }
