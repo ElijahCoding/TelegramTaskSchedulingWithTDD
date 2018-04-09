@@ -8,6 +8,6 @@ class SendReminder extends Event
 {
   public function handle()
   {
-    
+    dump($this->expression);
   }
 }
