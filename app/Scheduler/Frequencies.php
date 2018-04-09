@@ -100,7 +100,12 @@ trait Frequencies
     {
         return $this->days(6, 7);
     }
-    
+
+    public function at($hour = 0, $minute = 0)
+    {
+      return $this->dailyAt($hour, $minute);
+    }
+
 
   public function replaceIntoExpression($position, $value)
   {

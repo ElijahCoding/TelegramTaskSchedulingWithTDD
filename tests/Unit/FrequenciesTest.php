@@ -224,6 +224,22 @@ class FrequenciesTest extends TestCase
     }
 
     /** @test */
+    public function can_set_at_time()
+    {
+      $frequencies = $this->frequencies();
+      $frequencies->at(12, 30);
+      $this->assertEquals($frequencies->expression, '30 12 * * *');
+    }
+
+    /** @test */
+    public function can_set_day_and_time()
+    {
+      $frequencies = $this->frequencies();
+      $frequencies->at(12, 30)->weekends();
+      $this->assertEquals($frequencies->expression, '30 12 * * 6,7');
+    }
+
+    /** @test */
    public function can_set_weekends()
    {
        $frequencies = $this->frequencies();
