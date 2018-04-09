@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Date;
 use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
@@ -20,6 +21,24 @@ class Reminder extends Model
 
     public function getFrequencyAttribute($value) // weekly monthly daily
     {
-      return 'a';
+      return array_get(Date::frequencies(), $value);
+    }
+
+    public function getDayAttribute($value)
+    {
+      if ($value === null) {
+            return;
+      }
+
+      return array_get(Date::days(), $value);
+    }
+
+    public function getDateAttribute($value)
+    {
+        if ($value === null) {
+            return;
+        }
+
+        return Date::ordinal($value);
     }
 }
