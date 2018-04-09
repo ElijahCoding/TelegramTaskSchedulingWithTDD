@@ -151,6 +151,88 @@ class FrequenciesTest extends TestCase
     $this->assertEquals($frequencies->expression, '* * * * 1,3,5');
   }
 
+  /** @test */
+  public function can_set_mondays()
+  {
+    $frequencies = $this->frequencies();
+    $frequencies->mondays();
+
+    $this->assertEquals($frequencies->expression, '* * * * 1');
+  }
+
+  /** @test */
+  public function can_set_tuesdays()
+  {
+    $frequencies = $this->frequencies();
+    $frequencies->tuesdays();
+
+    $this->assertEquals($frequencies->expression, '* * * * 2');
+  }
+
+  /** @test */
+    public function can_set_wednesdays()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->wednesdays();
+
+        $this->assertEquals($frequencies->expression, '* * * * 3');
+    }
+
+    /** @test */
+    public function can_set_thursdays()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->thursdays();
+
+        $this->assertEquals($frequencies->expression, '* * * * 4');
+    }
+
+    /** @test */
+    public function can_set_fridays()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->fridays();
+
+        $this->assertEquals($frequencies->expression, '* * * * 5');
+    }
+
+    /** @test */
+    public function can_set_saturdays()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->saturdays();
+
+        $this->assertEquals($frequencies->expression, '* * * * 6');
+    }
+
+    /** @test */
+    public function can_set_sundays()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->sundays();
+
+        $this->assertEquals($frequencies->expression, '* * * * 7');
+    }
+
+    /** @test */
+    public function can_set_weekdays()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->weekdays();
+
+        $this->assertEquals($frequencies->expression, '* * * * 1,2,3,4,5');
+    }
+
+    /** @test */
+   public function can_set_weekends()
+   {
+       $frequencies = $this->frequencies();
+       $frequencies->weekends();
+
+       $this->assertEquals($frequencies->expression, '* * * * 6,7');
+   }
+
+
   protected function frequencies()
   {
     $frequencies = $this->getMockForTrait(Frequencies::class);
