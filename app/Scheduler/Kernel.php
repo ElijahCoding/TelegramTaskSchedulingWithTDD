@@ -21,6 +21,16 @@ class Kernel
     $this->events[] = $event;
   }
 
+  public function run()
+  {
+    foreach ($this->getEvents() as $event) {
+      if (!$event->isDueToRun($this->getDate())) {
+        continue;
+      }
+      $event->handle();
+    }
+  }
+
   public function setDate(Carbon $date)
   {
     $this->date = $date;

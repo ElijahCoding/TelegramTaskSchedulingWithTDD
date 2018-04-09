@@ -52,4 +52,31 @@ class KernelTest extends TestCase
 
     $this->assertInstanceOf(Carbon::class, $kernel->getDate());
   }
+
+  /** @test */
+  public function runs_expected_event()
+  {
+    $event = $this->getMockForAbstractClass(Event::class);
+    $event->expects($this->once())->method('handle');
+
+    $kernel = new Kernel;
+    $kernel->add($event);
+
+    $kernel->run();
+  }
+
+  /** @test */
+  public function does_not_run_unexpected_event()
+  {
+    $event = $this->getMockForAbstractClass(Event::class);
+    $event->monthly();
+    $event->expects($this->never())->method('handle');
+
+    $kernel = new Kernel;
+    $kernel->setDate(Carbon::create(2017, 10, 2, 0, 0, 0));
+
+    $kernel->add($event);
+
+    $kernel->run();
+  }
 }
