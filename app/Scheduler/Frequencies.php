@@ -106,6 +106,16 @@ trait Frequencies
       return $this->dailyAt($hour, $minute);
     }
 
+    public function monthly()
+    {
+      return $this->monthlyOn(1);
+    }
+
+    public function monthlyOn($day = 1)
+    {
+      return $this->replaceIntoExpression(1, [0,0,$day]);
+    }
+
 
   public function replaceIntoExpression($position, $value)
   {

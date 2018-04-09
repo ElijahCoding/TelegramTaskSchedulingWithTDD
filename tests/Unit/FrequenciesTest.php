@@ -240,6 +240,22 @@ class FrequenciesTest extends TestCase
     }
 
     /** @test */
+    public function can_set_monthly()
+    {
+      $frequencies = $this->frequencies();
+      $frequencies->monthly();
+      $this->assertEquals($frequencies->expression, '0 0 1 * *');
+    }
+
+    /** @test */
+    public function can_set_monthly_on_specific_day()
+    {
+      $frequencies = $this->frequencies();
+      $frequencies->monthlyOn(10);
+      $this->assertEquals($frequencies->expression, '0 0 10 * *');
+    }
+
+    /** @test */
    public function can_set_weekends()
    {
        $frequencies = $this->frequencies();
