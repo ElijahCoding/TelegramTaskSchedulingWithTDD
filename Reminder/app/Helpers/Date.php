@@ -2,8 +2,19 @@
 
 namespace App\Helpers;
 
+use DatePeriod;
+use DateTime;
+use DateInterval;
+
 class Date
 {
+    public static function range($start, $end, $interval = 'PT30M')
+    {
+        return new DatePeriod(
+            new DateTime($start), new DateInterval($interval), new DateTime($end)
+        );
+    }
+
     public static function frequencies()
     {
         return [
