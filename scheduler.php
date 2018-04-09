@@ -7,7 +7,7 @@ use App\Scheduler\Kernel;
 require_once 'vendor/autoload.php';
 
 $kernel = new Kernel;
-$kernel->setDate(Carbon::now()->tz('Europe/London'));
-$kernel->add(new SomeEvent())->everyMinute();
+
+$kernel->add(new SomeEvent())->dailyAt(12, 30);
 
 $kernel->run();

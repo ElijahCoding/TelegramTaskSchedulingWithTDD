@@ -256,6 +256,15 @@ class FrequenciesTest extends TestCase
     }
 
     /** @test */
+    public function replacement_works_correctly()
+    {
+      $frequencies = $this->frequencies();
+      $frequencies->daily()->daily();
+
+      $this->assertEquals($frequencies->expression, '0 0 * * *');
+    }
+
+    /** @test */
    public function can_set_weekends()
    {
        $frequencies = $this->frequencies();
