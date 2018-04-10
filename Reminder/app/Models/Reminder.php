@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
 {
-  protected $fillable = [
+    protected $fillable = [
         'body',
         'frequency',
         'day',
@@ -17,20 +17,23 @@ class Reminder extends Model
         'run_once',
     ];
 
-    public $table = "reminders";
-
-    public function getFrequencyAttribute($value) // weekly monthly daily
+    public function shouldBeRunOnce()
     {
-      return array_get(Date::frequencies(), $value);
+        return $this->run_once;
+    }
+
+    public function getFrequencyAttribute($value)
+    {
+        return array_get(Date::frequencies(), $value);
     }
 
     public function getDayAttribute($value)
     {
-      if ($value === null) {
+        if ($value === null) {
             return;
-      }
+        }
 
-      return array_get(Date::days(), $value);
+        return array_get(Date::days(), $value);
     }
 
     public function getDateAttribute($value)
@@ -38,7 +41,7 @@ class Reminder extends Model
         if ($value === null) {
             return;
         }
-
+        
         return Date::ordinal($value);
     }
 }

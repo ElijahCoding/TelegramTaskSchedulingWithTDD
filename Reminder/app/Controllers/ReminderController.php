@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\Reminder;
-use Cron\CronExpression;
 use App\Controllers\Controller;
+use App\Models\Reminder;
 use App\Scheduler\FrequencyBuilder;
+use Cron\CronExpression;
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
     ResponseInterface as Response
@@ -18,23 +18,30 @@ class ReminderController extends Controller
         $reminders = Reminder::latest()->get();
 
         return $this->c->view->render($response, 'reminders/index.twig', [
-          'reminders' => $reminders
+            'reminders' => $reminders
         ]);
     }
 
     public function store(Request $request, Response $response, $args)
     {
-      $params = (object) $request->getParams();
+        $params = (object) $request->getParams();
 
-      $expression = $this->buildCronExpression($params);
+        $expression = $this->buildCronExpression($params);
 
-      if (CronExpression::isValidExpression($expression)) {
-        $this->createReminder($params, $expression);
-      }
+        if (CronExpression::isValidExpression($expression)) {
+            $this->createReminder($params, $expression);
+        }
 
-      return $response->withRedirect($this->c->router->pathFor('reminders.index'));
+        return $response->withRedirect($this->c->router->pathFor('reminders.index'));
     }
-    
+
+    public function destroy(Request $request, Response $response, $args)
+    {
+        Reminder::find($args['reminder'])->delete();
+
+        return $response->withRedirect($this->c->router->pathFor('reminders.index'));
+    }
+
     protected function createReminder($params, $expression)
     {
         Reminder::create([
@@ -50,7 +57,7 @@ class ReminderController extends Controller
 
     protected function buildCronExpression($params)
     {
-      list($hour, $minute) = explode(':', $params->time);
+        list($hour, $minute) = explode(':', $params->time);
 
         $builder = new FrequencyBuilder();
         $builder->frequency($params->frequency);

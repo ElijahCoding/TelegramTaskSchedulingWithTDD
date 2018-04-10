@@ -6,10 +6,14 @@ use App\Scheduler\Kernel;
 
 require_once __DIR__ . '/bootstrap/app.php';
 
-$kernel = new Kernel;
+while (true) {
+    $kernel = new Kernel;
 
-Reminder::get()->each(function ($reminder) use ($kernel, $container){
-  $kernel->add(new SendReminder($reminder, $container->guzzle))->cron($reminder->expression);
-});
+    Reminder::get()->each(function ($reminder) use ($kernel, $container) {
+        $kernel->add(new SendReminder($reminder, $container->guzzle, $container->settings))->cron($reminder->expression);
+    });
 
-$kernel->run();
+    $kernel->run();
+
+    sleep(60);
+}

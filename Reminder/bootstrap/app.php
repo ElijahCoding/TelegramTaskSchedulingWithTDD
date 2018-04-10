@@ -26,10 +26,14 @@ $app = new Slim\App([
             'database' => getenv('DB_DATABASE'),
             'username' => getenv('DB_USERNAME'),
             'password' => getenv('DB_PASSWORD'),
-            'port' => getenv('DB_PORT'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
+        ],
+
+        'telegram' => [
+            'secret' => getenv('TELEGRAM_SECRET'),
+            'chat_id' => getenv('TELEGRAM_CHAT_ID'),
         ]
     ],
 ]);
