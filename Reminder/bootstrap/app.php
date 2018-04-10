@@ -36,6 +36,10 @@ $app = new Slim\App([
 
 $container = $app->getContainer();
 
+$container['guzzle'] = function () {
+    return new GuzzleHttp\Client;
+};
+
 $capsule = new Illuminate\Database\Capsule\Manager;
 $capsule->addConnection($container['settings']['db']);
 
@@ -51,7 +55,7 @@ $container['view'] = function ($container) {
     $view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));
 
     $view->getEnvironment()->addGlobal('date', new App\Helpers\Date);
-    
+
     return $view;
 };
 
